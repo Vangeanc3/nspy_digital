@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nspy_digital/themes/theme_colors.dart';
+import 'package:nspy_digital/src/shared/themes/theme_colors.dart';
 
 class AppTheme {
   static ThemeData myTheme = ThemeData(
