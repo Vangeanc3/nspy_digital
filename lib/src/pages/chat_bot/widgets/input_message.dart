@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:nspy_digital/src/repositories/mensagens_repository.dart';
 import 'package:nspy_digital/src/shared/themes/theme_colors.dart';
 import 'package:nspy_digital/src/shared/utils/validate_value.dart';
-import 'package:provider/provider.dart';
 
 class InputMessage extends StatelessWidget {
   const InputMessage({super.key});
@@ -54,22 +52,6 @@ class InputMessage extends StatelessWidget {
                   icon: const Icon(Icons.send_rounded),
                   onPressed: () async {
                     if (formKey.currentState!.validate()) {
-                      final quant = Provider.of<MensagensRepository>(context,
-                              listen: false)
-                          .getLenght();
-
-                      if (quant == 1) {
-                        // CONDIÇÃO QUE VERIFICA SE TEM MENSAGENS, ELE SÓ VAI CRIAR SE A QUANTIDADE DE MENSAGENS FOR IGUAL A 1
-                        mensagens = await MensagensDao().criarMensagens();
-                        widget.callBack(mensagens);
-                      } else if (quant >= 2) {
-                        mensagens = widget.callBack(mensagens);
-                        print("mensagens parametro $mensagens");
-                      }
-
-                      enviaMensagem(
-                          msgController.text, context, mensagens["id"]);
-
                       msgController.clear();
                     }
                   },
