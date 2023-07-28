@@ -12,13 +12,31 @@ class BodyMessages extends StatefulWidget {
   State<BodyMessages> createState() => _BodyMessagesState();
 }
 
-class _BodyMessagesState extends State<BodyMessages> {
+class _BodyMessagesState extends State<BodyMessages>
+    with SingleTickerProviderStateMixin {
+  bool isExpanded = false;
+  late AnimationController _controller;
+
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       automaticMessage(context);
     });
+
+    _controller =
+        AnimationController(vsync: this, duration: const Duration(seconds: 2));
+
+    _controller.forward(); // Inicia a animação automaticamente
+    _controller.addListener(() {
+      setState(() {});
+    });
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 
   @override
@@ -42,13 +60,17 @@ class _BodyMessagesState extends State<BodyMessages> {
                     ),
                     child: (list.messages[index]["loading"])
                         ? list.messages[index]["text"]
-                        : BoxCard(
-                            color: (list.messages[index]["received"])
-                                ? null
-                                : ThemeColors.msgSendColor,
-                            widget: Text(
-                              list.messages[index]["text"],
-                              style: const TextStyle(fontSize: 16),
+                        : AnimatedContainer(
+                            duration: const Duration(seconds: 1),
+                            width: _controller.value * 200,
+                            child: BoxCard(
+                              color: (list.messages[index]["received"])
+                                  ? null
+                                  : ThemeColors.msgSendColor,
+                              widget: Text(
+                                list.messages[index]["text"],
+                                style: const TextStyle(fontSize: 16),
+                              ),
                             ),
                           ),
                   ),

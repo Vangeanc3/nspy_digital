@@ -18,12 +18,18 @@ class ChatBotScreen extends StatelessWidget {
                 child: BodyMessages(),
               ),
             ),
-            ConstrainedBox(
-              constraints: const BoxConstraints(minHeight: 70, maxHeight: 150),
-              child: Container(
-                decoration: const BoxDecoration(color: ThemeColors.temaWhats2),
-                padding: const EdgeInsets.only(bottom: 5, left: 5, top: 5),
-                child: const InputMessage(),
+            AnimatedOpacity(
+              duration: const Duration(seconds: 1),
+              opacity: 0,
+              child: ConstrainedBox(
+                constraints:
+                    const BoxConstraints(minHeight: 70, maxHeight: 150),
+                child: Container(
+                  decoration:
+                      const BoxDecoration(color: ThemeColors.temaWhats2),
+                  padding: const EdgeInsets.only(bottom: 5, left: 5, top: 5),
+                  child: const InputMessage(),
+                ),
               ),
             )
           ],
