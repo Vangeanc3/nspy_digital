@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nspy_digital/src/pages/chat_bot/chat_bot_screen.dart';
+import 'package:nspy_digital/src/pages/home/home_screen.dart';
 import 'package:nspy_digital/src/pages/register/register_screen.dart';
 import 'package:nspy_digital/src/shared/themes/app_theme.dart';
 
@@ -13,10 +14,11 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.myTheme,
-      initialRoute: "/chat_bot",
+      initialRoute: "/home",
       routes: {
         "/chat_bot": (context) => const ChatBotScreen(),
         "/register": (context) => const RegisterScreen(),
+        "/home": (context) => const HomeScreen(),
       },
     );
   }
