@@ -7,7 +7,7 @@ class AppTheme {
       brightness: Brightness.light,
       textTheme: const TextTheme(
           bodyMedium: TextStyle(
-            fontSize: 19,
+            fontSize: 18,
           ),
           bodyLarge: TextStyle(
             fontSize: 26,

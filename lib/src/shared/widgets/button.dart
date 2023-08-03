@@ -7,7 +7,6 @@ class Button extends StatelessWidget {
   final Color corTexto;
   final bool borda;
   final LinearGradient? gradient;
-  final BuildContext context;
 
   const Button({
     super.key,
@@ -17,7 +16,6 @@ class Button extends StatelessWidget {
     this.icon,
     required this.corTexto,
     this.borda = false,
-    required this.context,
   });
 
   @override
@@ -26,7 +24,6 @@ class Button extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 13),
       decoration: BoxDecoration(
           border: (borda) ? Border.all(width: 1, color: Colors.white) : null,
-          boxShadow: kElevationToShadow[3],
           borderRadius: BorderRadius.circular(100),
           color: cor,
           gradient: gradient),

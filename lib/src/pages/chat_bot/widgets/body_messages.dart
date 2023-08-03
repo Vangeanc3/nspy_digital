@@ -62,14 +62,17 @@ class _BodyMessagesState extends State<BodyMessages>
                         ? list.messages[index]["text"]
                         : AnimatedContainer(
                             duration: const Duration(seconds: 1),
-                            width: _controller.value * 200,
-                            child: BoxCard(
-                              color: (list.messages[index]["received"])
-                                  ? null
-                                  : ThemeColors.msgSendColor,
-                              widget: Text(
-                                list.messages[index]["text"],
-                                style: const TextStyle(fontSize: 16),
+                            child: Material(
+                              color: Colors.transparent,
+                              elevation: 10,
+                              child: BoxCard(
+                                color: (list.messages[index]["received"])
+                                    ? null
+                                    : ThemeColors.msgSendColor,
+                                widget: Text(
+                                  list.messages[index]["text"],
+                                  style: const TextStyle(fontSize: 16),
+                                ),
                               ),
                             ),
                           ),

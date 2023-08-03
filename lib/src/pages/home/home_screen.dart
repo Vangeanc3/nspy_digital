@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nspy_digital/src/pages/home/widgets/functions_container.dart';
+import 'package:nspy_digital/src/pages/home/widgets/icon_and_text.dart';
 import 'package:nspy_digital/src/pages/home/widgets/plan_container.dart';
 import 'package:nspy_digital/src/shared/widgets/box_card.dart';
 import 'package:nspy_digital/src/shared/widgets/button.dart';
@@ -44,168 +45,266 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           children: [
             Container(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
+              decoration: const BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage("assets/images/background.png"),
+                      fit: BoxFit.cover)),
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 25),
               child: Column(
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.only(top: 20, bottom: 20),
+                  const Padding(
+                    padding: EdgeInsets.only(bottom: 20),
                     child: Text("ESPIÃO PARA CELULAR",
-                        style: Theme.of(context).textTheme.bodyLarge),
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 26,
+                            fontWeight: FontWeight.w900)),
                   ),
                   BoxCard(
+                      radius: 100,
                       widget: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
-                      Padding(
-                        padding: EdgeInsets.only(right: 5),
-                        child: Icon(Icons.circle, color: Colors.green),
-                      ),
-                      Text(
-                        "100% invisivel e seguro",
-                      )
-                    ],
-                  )),
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: const [
+                          Padding(
+                            padding: EdgeInsets.only(right: 5),
+                            child: Icon(Icons.circle, color: Colors.green),
+                          ),
+                          Text(
+                            "100% invisivel e seguro",
+                          )
+                        ],
+                      )),
                   Container(
+                    decoration:
+                        BoxDecoration(borderRadius: BorderRadius.circular(10)),
                     margin: const EdgeInsets.only(top: 20, bottom: 30),
-                    height: MediaQuery.of(context).size.height * 0.8,
+                    height: MediaQuery.of(context).size.height * 0.7,
                     child: VideoPlayer(_controller),
                   ),
                   Container(
                     height: 1,
                     decoration:
-                        BoxDecoration(border: Border.all(color: Colors.black)),
+                        BoxDecoration(border: Border.all(color: Colors.white)),
                   ),
+                  const Padding(
+                    padding: EdgeInsets.only(top: 30),
+                    child: IconAndText(
+                        icon:
+                            Icon(Icons.check_box_outlined, color: Colors.green),
+                        text: Text(
+                          "Monitore mensagens do Whatsapp",
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
+                        )),
+                  ),
+                  const IconAndText(
+                      icon: Icon(Icons.check_box_outlined, color: Colors.green),
+                      text: Text(
+                        "Mensagens do Instagram",
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      )),
+                  const IconAndText(
+                      icon: Icon(Icons.check_box_outlined, color: Colors.green),
+                      text: Text(
+                        "Escute o ambiente",
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      )),
+                  const IconAndText(
+                      icon: Icon(Icons.check_box_outlined, color: Colors.green),
+                      text: Text(
+                        "Localização em tempo real",
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      )),
                   Padding(
-                    padding: const EdgeInsets.only(top: 30),
-                    child: Row(
-                      children: const [
-                        Icon(Icons.check_box_outlined, color: Colors.green),
-                        Text("Monitore mensagens do Whatsapp")
-                      ],
+                    padding: const EdgeInsets.only(top: 20),
+                    child: Material(
+                      color: Colors.transparent,
+                      child: InkWell(
+                        borderRadius: BorderRadius.circular(100),
+                        onTap: () {},
+                        child: const Button(
+                          corTexto: Colors.white,
+                          cor: Colors.purple,
+                          texto: "Iniciar Monitoramento",
+                        ),
+                      ),
                     ),
-                  ),
-                  Row(
-                    children: const [
-                      Icon(Icons.check_box_outlined, color: Colors.green),
-                      Text("Mensagens do Instagram")
-                    ],
-                  ),
-                  Row(
-                    children: const [
-                      Icon(Icons.check_box_outlined, color: Colors.green),
-                      Text("Escute o ambiente")
-                    ],
-                  ),
-                  Row(
-                    children: const [
-                      Icon(Icons.check_box_outlined, color: Colors.green),
-                      Text("Localização em tempo real")
-                    ],
-                  ),
-                  Button(
-                    context: context,
-                    corTexto: Colors.white,
-                    cor: Colors.purple,
-                    texto: "Iniciar Monitoramento",
-                    borda: true,
                   )
                 ],
               ),
             ),
             Container(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 25),
               child: Column(
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.only(top: 20, bottom: 20),
+                  const Padding(
+                    padding: EdgeInsets.only(bottom: 20),
                     child: Text("FUNÇÕES DO APLICATIVO",
-                        style: Theme.of(context).textTheme.bodyLarge),
+                        style: TextStyle(
+                            fontSize: 26, fontWeight: FontWeight.w900)),
                   ),
                   const FunctionContainer(
-                    icon: Icon(Icons.mic_rounded, color: Colors.red),
+                    icon: Icon(Icons.mic_rounded, color: Colors.red, size: 35),
                     title: "SOM AMBIENTE",
                     description:
                         "Escute  e Grave conversas sendo feitas no ambiente em tempo real, de forma silenciosa e sem rastros.",
                   ),
                   const FunctionContainer(
-                    icon: Icon(Icons.social_distance, color: Colors.red),
+                    icon: Image(
+                        image: AssetImage("assets/images/instagram.png"),
+                        height: 35),
                     title: "INSTAGRAM",
                     description:
                         "Visualize todas as mensagens de texto, áudio e vídeos do instagram.",
                   ),
                   const FunctionContainer(
-                    icon: Icon(Icons.call, color: Colors.red),
+                    icon: Icon(Icons.phone, color: Colors.blue, size: 35),
                     title: "CHAMADAS",
                     description:
                         "Histórico cronológico de chamadas, efetuadas, recebidas e rejeitadas.",
                   ),
                   const FunctionContainer(
-                    icon: Icon(Icons.mic_rounded, color: Colors.red),
+                    icon: Icon(
+                      Icons.location_on,
+                      color: Colors.orange,
+                      size: 35,
+                    ),
                     title: "LOCALIZAÇÃO",
                     description:
                         "Receba atualizações a cada 10 minutos da localização exata do seu parceiro(a).",
                   ),
                   const FunctionContainer(
-                    icon: Icon(Icons.mic_rounded, color: Colors.red),
+                    icon: Icon(Icons.photo_library,
+                        color: Colors.green, size: 35),
                     title: "FOTOS E VÍDEOS",
                     description:
                         "Tenha acesso a galeria completa do celular monitorado!!",
                   ),
-                  Button(
-                    context: context,
-                    corTexto: Colors.white,
-                    cor: Colors.purple,
-                    texto: "Iniciar Monitoramento",
-                    borda: true,
+                  Padding(
+                    padding: const EdgeInsets.only(top: 25),
+                    child: InkWell(
+                      borderRadius: BorderRadius.circular(100),
+                      onTap: () {},
+                      child: const Button(
+                        corTexto: Colors.white,
+                        cor: Colors.purple,
+                        texto: "Iniciar Monitoramento",
+                        borda: true,
+                      ),
+                    ),
                   )
                 ],
               ),
             ),
             Container(
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 25),
               color: Colors.purple,
               child: Column(
                 children: [
                   const Text(
-                      "A Nspy está no mercado a mais de 12 anos, ajudando pessoas a saberem a verdade."),
-                  const Text(
-                      "Nossos softwares são altamente testados e com tecnologia de ponta."),
+                      "A Nspy está no mercado a mais de 12 anos, ajudando pessoas a saberem a verdade.",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 24,
+                          fontWeight: FontWeight.w500)),
+                  const Padding(
+                    padding: EdgeInsets.only(top: 30, bottom: 30),
+                    child: Text(
+                        "Nossos softwares são altamente testados e com tecnologia de ponta.",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(color: Colors.white)),
+                  ),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      BoxCard(
-                          widget: Column(
-                        children: const [
-                          Icon(
-                            Icons.remove_red_eye,
-                          ),
-                          Text("100% Invisivel")
-                        ],
-                      )),
-                      BoxCard(
-                          widget: Column(
-                        children: const [
-                          Icon(
-                            Icons.remove_red_eye,
-                          ),
-                          Text("Suporte 12/7")
-                        ],
-                      )),
+                      Material(
+                        color: Colors.transparent,
+                        child: BoxCard(
+                            borderColor: Colors.white,
+                            borda: true,
+                            color: Colors.purple,
+                            widget: Column(
+                              children: const [
+                                Padding(
+                                  padding: EdgeInsets.only(bottom: 10),
+                                  child: Icon(
+                                    Icons.remove_red_eye_outlined,
+                                    size: 50,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                Text(
+                                  "100% Invisivel",
+                                  style: TextStyle(color: Colors.white),
+                                )
+                              ],
+                            )),
+                      ),
+                      Material(
+                        color: Colors.transparent,
+                        child: BoxCard(
+                            borderColor: Colors.white,
+                            borda: true,
+                            color: Colors.purple,
+                            widget: Column(
+                              children: const [
+                                Padding(
+                                  padding: EdgeInsets.only(bottom: 10),
+                                  child: Icon(
+                                    Icons.headset_mic_outlined,
+                                    size: 50,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                Text(
+                                  "Suporte 12/7",
+                                  style: TextStyle(color: Colors.white),
+                                )
+                              ],
+                            )),
+                      ),
                     ],
                   ),
-                  Button(
-                    context: context,
-                    corTexto: Colors.white,
-                    cor: Colors.purple,
-                    texto: "Iniciar Monitoramento",
-                    borda: true,
+                  Padding(
+                    padding: const EdgeInsets.only(top: 25),
+                    child: Material(
+                      color: Colors.transparent,
+                      child: InkWell(
+                        borderRadius: BorderRadius.circular(100),
+                        onTap: () {},
+                        child: const Button(
+                          corTexto: Colors.white,
+                          cor: Colors.purple,
+                          texto: "Iniciar Monitoramento",
+                          borda: true,
+                        ),
+                      ),
+                    ),
                   )
                 ],
               ),
             ),
             Container(
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 25),
               child: Column(
                 children: const [
-                  Text("Escolha seu plano"),
-                  Text("Aceitamos cartão de crédito"),
+                  Text("ESCOLHA SEU PLANO",
+                      style:
+                          TextStyle(fontSize: 26, fontWeight: FontWeight.w900)),
+                  Padding(
+                    padding: EdgeInsets.symmetric(vertical: 15),
+                    child: Text(
+                        "Aceitamos cartão de crédito e PIX como meios de pagamento!",
+                        textAlign: TextAlign.center),
+                  ),
                   PlanContainer(
                       title: "SPY - MENSAL",
                       subtitle: "R\$1,66 POR DIA",
