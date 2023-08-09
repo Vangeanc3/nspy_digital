@@ -12,31 +12,13 @@ class BodyMessages extends StatefulWidget {
   State<BodyMessages> createState() => _BodyMessagesState();
 }
 
-class _BodyMessagesState extends State<BodyMessages>
-    with SingleTickerProviderStateMixin {
-  bool isExpanded = false;
-  late AnimationController _controller;
-
+class _BodyMessagesState extends State<BodyMessages> {
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       automaticMessage(context);
     });
-
-    _controller =
-        AnimationController(vsync: this, duration: const Duration(seconds: 2));
-
-    _controller.forward(); // Inicia a animação automaticamente
-    _controller.addListener(() {
-      setState(() {});
-    });
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
   }
 
   @override
@@ -44,6 +26,7 @@ class _BodyMessagesState extends State<BodyMessages>
     return Consumer<MensagensRepository>(
       builder: (context, list, child) {
         return CustomScrollView(
+          reverse: true,
           slivers: [
             SliverList(
               delegate: SliverChildBuilderDelegate((context, index) {
@@ -60,20 +43,13 @@ class _BodyMessagesState extends State<BodyMessages>
                     ),
                     child: (list.messages[index]["loading"])
                         ? list.messages[index]["text"]
-                        : AnimatedContainer(
-                            duration: const Duration(seconds: 1),
-                            child: Material(
-                              color: Colors.transparent,
-                              elevation: 10,
-                              child: BoxCard(
-                                color: (list.messages[index]["received"])
-                                    ? null
-                                    : ThemeColors.msgSendColor,
-                                widget: Text(
-                                  list.messages[index]["text"],
-                                  style: const TextStyle(fontSize: 16),
-                                ),
-                              ),
+                        : BoxCard(
+                            color: (list.messages[index]["received"])
+                                ? null
+                                : ThemeColors.msgSendColor,
+                            widget: Text(
+                              list.messages[index]["text"],
+                              style: const TextStyle(fontSize: 16),
                             ),
                           ),
                   ),

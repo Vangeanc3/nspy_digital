@@ -6,7 +6,7 @@ class MensagensRepository extends ChangeNotifier {
   MensagensRepository({required this.messages});
 
   void addMessage(Map<String, dynamic> message) {
-    messages.add(message);
+    messages.insert(0, message);
     notifyListeners();
   }
 
