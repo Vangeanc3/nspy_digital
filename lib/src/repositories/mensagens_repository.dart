@@ -2,21 +2,20 @@ import 'package:flutter/material.dart';
 
 class MensagensRepository extends ChangeNotifier {
   List<Map<String, dynamic>> messages;
+  List<Map<String, dynamic>> get getList{
+    return messages;
+  }
 
   MensagensRepository({required this.messages});
 
   void addMessage(Map<String, dynamic> message) {
-    messages.insert(0, message);
+    messages.add(message);
     notifyListeners();
   }
 
   int getId() {
     final id = messages.last["mensagens_id"];
     return id;
-  }
-
-  int getLenght() {
-    return messages.length;
   }
 
   void replaceMessage(List<Map<String, dynamic>> messages) {

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nspy_digital/src/pages/home/widgets/plan_container.dart';
+import 'package:nspy_digital/src/pages/sales_page/widgets/plan_container.dart';
 
 class SalesScreen extends StatelessWidget {
   const SalesScreen({super.key});
@@ -27,22 +27,9 @@ class SalesScreen extends StatelessWidget {
                           textAlign: TextAlign.center),
                     ),
                     PlanContainer(
-                        title: "SPY - MENSAL",
-                        subtitle: "R\$1,66 POR DIA",
-                        subtitle2: "Valor total do plano",
-                        price: "R\$49,90"),
-                    PlanContainer(
-                        title: "SPY - TRIMESTRAL",
-                        subtitle: "R\$0,88 POR DIA",
-                        price: "R\$79,90"),
-                    PlanContainer(
                         title: "SPY - SEMESTRAL",
                         subtitle: "R\$0,55 POR DIA",
                         price: "R\$99,90"),
-                    PlanContainer(
-                      title: "VITALÍCIO",
-                      price: "R\$129,90",
-                    ),
                   ],
                 ),
               ),

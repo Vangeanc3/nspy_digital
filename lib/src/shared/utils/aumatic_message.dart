@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:nspy_digital/src/repositories/mensagens_repository.dart';
+import 'package:nspy_digital/src/shared/utils/remove_loading_and_add_message.dart';
 import 'package:nspy_digital/src/shared/widgets/box_card.dart';
 import 'package:provider/provider.dart';
 
-Future<dynamic> automaticMessage(BuildContext context) async {
+Future<bool> automaticMessage(BuildContext context) async {
   // Espera 3s para remover o loading
-  Future.delayed(
+  await Future.delayed(
     const Duration(seconds: 3),
-    () {
+    () async {
       removeLoadingAndAddMessage(
           context, "Seja Bem vindo ao aplicativo Nspy Digital.");
 
       // DEPOIS ADD O LOADING
-      Future.delayed(const Duration(milliseconds: 500), () {
+     await Future.delayed(const Duration(milliseconds: 2500), () async {
         Provider.of<MensagensRepository>(context, listen: false).addMessage(
           {
             "text": BoxCard(
@@ -27,15 +28,15 @@ Future<dynamic> automaticMessage(BuildContext context) async {
             "loading": true
           },
         );
-        Future.delayed(
+        await Future.delayed(
           const Duration(seconds: 3),
-          () {
+          () async {
             removeLoadingAndAddMessage(context,
                 "Meu nome é Carol Vasconselos, vai ser um prazer enorme te ajudar!");
 
-            Future.delayed(
-              const Duration(milliseconds: 500),
-              () {
+            await Future.delayed(
+              const Duration(milliseconds: 3500),
+              () async {
                 Provider.of<MensagensRepository>(context, listen: false)
                     .addMessage(
                   {
@@ -50,11 +51,12 @@ Future<dynamic> automaticMessage(BuildContext context) async {
                     "loading": true
                   },
                 );
-                Future.delayed(
+                await Future.delayed(
                   const Duration(seconds: 3),
-                  () {
+                  () async {
                     removeLoadingAndAddMessage(
                         context, "Você poderia me dizer qual o seu nome?");
+                       await Future.delayed(const Duration(seconds: 1));
                   },
                 );
               },
@@ -64,14 +66,7 @@ Future<dynamic> automaticMessage(BuildContext context) async {
       });
     },
   );
+   return true;
 }
 
-removeLoadingAndAddMessage(BuildContext context, String message) {
-  Provider.of<MensagensRepository>(context, listen: false).removeLoading();
 
-  //REMOVE O LOADING E ADD A MSG
-  Future.delayed(const Duration(milliseconds: 10), () {
-    Provider.of<MensagensRepository>(context, listen: false)
-        .addMessage({"text": message, "received": true, "loading": false});
-  });
-}

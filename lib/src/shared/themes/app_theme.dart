@@ -13,6 +13,6 @@ class AppTheme {
             fontSize: 26,
           ),
           bodySmall: TextStyle(
-            fontSize: 22,
+            fontSize: 14,
           )));
 }

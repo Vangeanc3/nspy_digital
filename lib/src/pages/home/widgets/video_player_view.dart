@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
+import 'package:chewie/chewie.dart';
 
 class VideoPlayerView extends StatefulWidget {
   const VideoPlayerView({super.key});
@@ -9,67 +10,32 @@ class VideoPlayerView extends StatefulWidget {
 }
 
 class _VideoPlayerViewState extends State<VideoPlayerView> {
-  late VideoPlayerController _controller;
+  late VideoPlayerController _videoController;
+  late ChewieController _chewieController;
 
   @override
   void initState() {
-    super.initState();
-    _controller = VideoPlayerController.asset("assets/app/home_video.mp4")
+    _videoController = VideoPlayerController.asset("assets/app/home_video.mp4")
       ..initialize().then((_) {
         setState(() {});
       });
+
+    _chewieController = ChewieController(
+      videoPlayerController: _videoController,
+      aspectRatio: 1
+    );
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _videoController.dispose();
+    _chewieController.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        _controller.value.isInitialized
-            ? Expanded(
-                child: AspectRatio(
-                  aspectRatio: _controller.value.aspectRatio,
-                  child: VideoPlayer(
-                    _controller
-            ),
-                ),
-              )
-            : Container(),
-        VideoProgressIndicator(
-          _controller,
-          allowScrubbing: true,
-          padding: const EdgeInsets.all(0),
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.skip_previous,
-                  color: Colors.white,
-                  size: 35,
-                )),
-            IconButton(
-                onPressed: () {
-                  _controller.value.isPlaying
-                      ? _controller.pause()
-                      : _controller.play();
-                },
-                icon: const Icon(
-                  Icons.play_arrow,
-                  color: Colors.white,
-                  size: 35,
-                )),
-            IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.skip_next,
-                  color: Colors.white,
-                  size: 35,
-                ))
-          ],
-        )
-      ],
-    );
+    return Chewie(controller: _chewieController);
   }
 }

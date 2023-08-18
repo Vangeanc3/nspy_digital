@@ -63,7 +63,9 @@ class PlanContainer extends StatelessWidget {
                   elevation: 5,
                   child: InkWell(
                     borderRadius: BorderRadius.circular(100),
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.pushNamed(context, "/web");
+                    },
                     child: const Button(
                       corTexto: Colors.white,
                       cor: Colors.purple,
