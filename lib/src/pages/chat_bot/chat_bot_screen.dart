@@ -38,8 +38,6 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final messageProvider = Provider.of<MensagensRepository>(context);
-
     return Scaffold(
       appBar: AppBar(
         title: const Text("ESPIÃO PARA CELULAR",
@@ -55,17 +53,19 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.fromLTRB(0, 20, 8, 0),
-                  child: ListView.builder(
-                    //  controller: _listScrollController,
-                    itemCount: messageProvider.getList.length,
-                    itemBuilder: (context, index) {
-                      return ChatWidget(
-                        received: messageProvider.messages[index]["received"],
-                        text: messageProvider.getList[index]["text"],
-                        loading: messageProvider.getList[index]["loading"],
-                        shouldAnimate:
-                            messageProvider.getList.length - 1 == index,
-                        shouldAudio: messageProvider.getList[index]["audio"],
+                  child: Consumer<MensagensRepository>(
+                    builder: (context, list, child) {
+                      return CustomScrollView(
+                        slivers: [
+                          SliverList(delegate:
+                              SliverChildBuilderDelegate((context, index) {
+                            return ChatWidget(
+                                received: list.messages[index]["received"],
+                                text: list.messages[index]["text"],
+                                loading: list.messages[index]["loading"],
+                                shouldAudio: list.messages[index]["received"]);
+                          }))
+                        ],
                       );
                     },
                   ),

@@ -38,26 +38,23 @@ class _AudioWidgetState extends State<AudioWidget> {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Container(
-          child: StreamBuilder<PlayerState>(
-            stream: audioPlayer.playerStateStream,
-            builder: (context, snapshot) {
-              final playerState = snapshot.data;
-              final processingState = playerState?.processingState;
-              final playing = playerState?.playing;
+        StreamBuilder<PlayerState>(
+          stream: audioPlayer.playerStateStream,
+          builder: (context, snapshot) {
+            final playerState = snapshot.data;
+            final processingState = playerState?.processingState;
+            final playing = playerState?.playing;
 
-              if (!(playing ?? false)) {
-                return IconButton(
-                    onPressed: () {},
-                    icon: const Icon(Icons.play_arrow_rounded));
-              } else if (processingState != ProcessingState.completed) {
-                return IconButton(
-                    onPressed: audioPlayer.pause,
-                    icon: const Icon(Icons.pause_rounded));
-              }
-              return const Icon(Icons.play_arrow_rounded);
-            },
-          ),
+            if (!(playing ?? false)) {
+              return IconButton(
+                  onPressed: () {}, icon: const Icon(Icons.play_arrow_rounded));
+            } else if (processingState != ProcessingState.completed) {
+              return IconButton(
+                  onPressed: audioPlayer.pause,
+                  icon: const Icon(Icons.pause_rounded));
+            }
+            return const Icon(Icons.play_arrow_rounded);
+          },
         ),
         StreamBuilder<PositionData>(
           stream: positionDataStream,
