@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.myTheme,
-      initialRoute: "/home",
+      initialRoute: "/chat",
       routes: {
         "/chat": (context) => const ChatBotScreen(),
         "/register": (context) => const RegisterScreen(),

@@ -19,7 +19,8 @@ void main() {
                           size: 10,
                         ))),
                 "received": true,
-                "loading": true
+                "loading": true,
+                "audio": false
               },
             ])),
   ], child: const MyApp()));

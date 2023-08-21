@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:nspy_digital/src/repositories/mensagens_repository.dart';
 import 'package:nspy_digital/src/shared/themes/theme_colors.dart';
 import 'package:nspy_digital/src/shared/utils/send_message_name.dart';
 import 'package:nspy_digital/src/shared/utils/validate_value.dart';
+import 'package:provider/provider.dart';
 
 class InputMessage extends StatefulWidget {
-   final Function(bool)
+  final Function(bool)
       callBack; // CALL BACK PARA PASSAR OS DADOS PARA O WIDGET PAI
   const InputMessage({super.key, required this.callBack});
 
@@ -13,7 +15,6 @@ class InputMessage extends StatefulWidget {
 }
 
 class _InputMessageState extends State<InputMessage> {
-
   @override
   void dispose() {
     super.dispose();
@@ -71,9 +72,16 @@ class _InputMessageState extends State<InputMessage> {
                   ),
                   onPressed: () async {
                     if (formKey.currentState!.validate()) {
-                      await sendMessageName(context, msgController.text);
-                      msgController.clear();
-                      widget.callBack(false);
+                      final listLength = Provider.of<MensagensRepository>(
+                              context,
+                              listen: false)
+                          .getList
+                          .length;
+                      if (listLength < 4) {
+                        await sendMessageName(context, msgController.text);
+                        msgController.clear();
+                        widget.callBack(false);
+                      } else {}
                     }
                   },
                 ),
@@ -85,4 +93,3 @@ class _InputMessageState extends State<InputMessage> {
     );
   }
 }
-

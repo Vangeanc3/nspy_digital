@@ -18,10 +18,10 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
   late ScrollController _listScrollController;
 
   @override
-  void initState()  {
+  void initState() {
     _listScrollController = ScrollController();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-       await automaticMessage(context).then((value) {
+      await automaticMessage(context).then((value) {
         setState(() {
           showInput = value;
         });
@@ -41,10 +41,12 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
     final messageProvider = Provider.of<MensagensRepository>(context);
 
     return Scaffold(
-       appBar:  AppBar(title: const Text("ESPIÃO PARA CELULAR",
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w900)), centerTitle: true, backgroundColor: Colors.purple,),
+      appBar: AppBar(
+        title: const Text("ESPIÃO PARA CELULAR",
+            style: TextStyle(color: Colors.white, fontWeight: FontWeight.w900)),
+        centerTitle: true,
+        backgroundColor: Colors.purple,
+      ),
       body: SafeArea(
         child: Container(
           padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 7),
@@ -58,19 +60,26 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
                     itemCount: messageProvider.getList.length,
                     itemBuilder: (context, index) {
                       return ChatWidget(
-                          received: messageProvider.messages[index]["received"],
-                          text: messageProvider.getList[index]["text"],
-                          loading: messageProvider.getList[index]["loading"],
-                          shouldAnimate: messageProvider.getList.length - 1 == index,);
+                        received: messageProvider.messages[index]["received"],
+                        text: messageProvider.getList[index]["text"],
+                        loading: messageProvider.getList[index]["loading"],
+                        shouldAnimate:
+                            messageProvider.getList.length - 1 == index,
+                        shouldAudio: messageProvider.getList[index]["audio"],
+                      );
                     },
                   ),
                 ),
               ),
-              (showInput) ? 
-               InputMessage(callBack: (data) {
-                showInput = data;
-               },).animate().fade(begin: 0, end: 1, duration: 500.milliseconds)
-              : Container()
+              (showInput)
+                  ? InputMessage(
+                      callBack: (data) {
+                        showInput = data;
+                      },
+                    )
+                      .animate()
+                      .fade(begin: 0, end: 1, duration: 500.milliseconds)
+                  : Container()
             ],
           ),
         ),

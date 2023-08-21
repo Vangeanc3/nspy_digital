@@ -8,13 +8,13 @@ import 'package:provider/provider.dart';
 Future<bool> automaticMessage(BuildContext context) async {
   // Espera 3s para remover o loading
   await Future.delayed(
-    const Duration(seconds: 3),
+    const Duration(seconds: 1),
     () async {
       removeLoadingAndAddMessage(
           context, "Seja Bem vindo ao aplicativo Nspy Digital.");
 
       // DEPOIS ADD O LOADING
-     await Future.delayed(const Duration(milliseconds: 2500), () async {
+      await Future.delayed(const Duration(milliseconds: 1800), () async {
         Provider.of<MensagensRepository>(context, listen: false).addMessage(
           {
             "text": BoxCard(
@@ -25,11 +25,12 @@ Future<bool> automaticMessage(BuildContext context) async {
                       size: 10,
                     ))),
             "received": true,
-            "loading": true
+            "loading": true,
+            "audio": false
           },
         );
         await Future.delayed(
-          const Duration(seconds: 3),
+          const Duration(seconds: 1),
           () async {
             removeLoadingAndAddMessage(context,
                 "Meu nome é Carol Vasconselos, vai ser um prazer enorme te ajudar!");
@@ -48,7 +49,8 @@ Future<bool> automaticMessage(BuildContext context) async {
                               size: 10,
                             ))),
                     "received": true,
-                    "loading": true
+                    "loading": true,
+                    "audio": false
                   },
                 );
                 await Future.delayed(
@@ -56,7 +58,7 @@ Future<bool> automaticMessage(BuildContext context) async {
                   () async {
                     removeLoadingAndAddMessage(
                         context, "Você poderia me dizer qual o seu nome?");
-                       await Future.delayed(const Duration(seconds: 1));
+                    await Future.delayed(const Duration(seconds: 1));
                   },
                 );
               },
@@ -66,7 +68,5 @@ Future<bool> automaticMessage(BuildContext context) async {
       });
     },
   );
-   return true;
+  return true;
 }
-
-

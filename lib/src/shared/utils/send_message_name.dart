@@ -8,8 +8,8 @@ import 'package:nspy_digital/src/shared/widgets/box_card.dart';
 import 'package:provider/provider.dart';
 
 sendMessageName(BuildContext context, String message) async {
-  Provider.of<MensagensRepository>(context, listen: false)
-      .addMessage({"text": message, "received": false, "loading": false});
+  Provider.of<MensagensRepository>(context, listen: false).addMessage(
+      {"text": message, "received": false, "loading": false, "audio": false});
 
   await Future.delayed(
     const Duration(microseconds: 500),
@@ -24,7 +24,8 @@ sendMessageName(BuildContext context, String message) async {
                     size: 10,
                   ))),
           "received": true,
-          "loading": true
+          "loading": true,
+          "audio": false
         },
       );
 
@@ -42,14 +43,16 @@ sendMessageName(BuildContext context, String message) async {
                       Text('$message Você já sabe como funciona o aplicativo?'),
                   actions: <Widget>[
                     TextButton(
-                      onPressed: () {
+                      onPressed: () async {
                         Provider.of<MensagensRepository>(context, listen: false)
                             .addMessage({
                           "text": "SIM, JÁ SEI COMO FUNCIONA!",
                           "received": false,
-                          "loading": false
+                          "loading": false,
+                          "audio": false
                         });
-                        Provider.of<MensagensRepository>(context,listen: false).addMessage(
+                        Provider.of<MensagensRepository>(context, listen: false)
+                            .addMessage(
                           {
                             "text": BoxCard(
                                 widget: ConstrainedBox(
@@ -60,12 +63,12 @@ sendMessageName(BuildContext context, String message) async {
                                       size: 10,
                                     ))),
                             "received": true,
-                            "loading": true
+                            "loading": true,
+                            "audio": false
                           },
                         );
-                        Future.delayed(const Duration(seconds: 1), () async {
-                          removeLoadingAndAddMessage(context, "Para iniciarmos você poderia me informar quais comportamentos estranhos você notou?");
-                        },);
+                        await removeLoadingAndAddMessage(context,
+                            "Para iniciarmos você poderia me informar quais comportamentos estranhos você notou?");
                         Navigator.of(context).pop();
                       },
                       child: const Text('SIM, JÁ SEI COMO FUNCIONA!'),
@@ -77,21 +80,24 @@ sendMessageName(BuildContext context, String message) async {
                             .addMessage({
                           "text": "NÃO, ME EXPLICA POR FAVOR!",
                           "received": false,
-                          "loading": false
+                          "loading": false,
+                          "audio": false
                         });
                         Navigator.of(context).pop(); // Fecha o modal
-                        Provider.of<MensagensRepository>(context).addMessage(
+                        Provider.of<MensagensRepository>(context, listen: false)
+                            .addMessage(
                           {
                             "text": BoxCard(
                                 widget: ConstrainedBox(
                                     constraints:
                                         const BoxConstraints(maxWidth: 70),
                                     child: const SpinKitThreeBounce(
-                                      color: Colors.black,
+                                      color: Color.fromARGB(255, 22, 14, 14),
                                       size: 10,
                                     ))),
                             "received": true,
-                            "loading": true
+                            "loading": false,
+                            "audio": true
                           },
                         );
                         // Coloque aqui a lógica para a ação de confirmação

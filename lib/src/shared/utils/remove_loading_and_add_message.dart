@@ -6,8 +6,8 @@ removeLoadingAndAddMessage(BuildContext context, String message) async {
   Provider.of<MensagensRepository>(context, listen: false).removeLoading();
 
   //REMOVE O LOADING E ADD A MSG
-   await Future.delayed(const Duration(milliseconds: 10), () {
-    Provider.of<MensagensRepository>(context, listen: false)
-        .addMessage({"text": message, "received": true, "loading": false});
+  await Future.delayed(const Duration(milliseconds: 10), () {
+    Provider.of<MensagensRepository>(context, listen: false).addMessage(
+        {"text": message, "received": true, "loading": false, "audio": false});
   });
 }

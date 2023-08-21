@@ -6,8 +6,8 @@ import 'package:provider/provider.dart';
 
 sendMessage(String mensagem, BuildContext context, int? id) async {
   // MENSAGEM ENVIADA PELO USUÁRIO
-  Provider.of<MensagensRepository>(context, listen: false)
-      .addMessage({"texto": mensagem, "receveid": false, "loading": false});
+  Provider.of<MensagensRepository>(context, listen: false).addMessage(
+      {"texto": mensagem, "receveid": false, "loading": false, "audio": false});
 
   // WIDGET DE LOADING ENQUANTO A MENSAGEM CHEGA
   Provider.of<MensagensRepository>(context, listen: false).addMessage({
@@ -20,6 +20,7 @@ sendMessage(String mensagem, BuildContext context, int? id) async {
       ),
     )),
     "receveid": true,
-    "loading": true
+    "loading": true,
+    "audio": false
   });
 }
