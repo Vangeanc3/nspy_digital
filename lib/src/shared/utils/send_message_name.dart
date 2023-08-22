@@ -7,12 +7,13 @@ import 'package:nspy_digital/src/shared/utils/remove_loading_and_add_message.dar
 import 'package:nspy_digital/src/shared/widgets/box_card.dart';
 import 'package:provider/provider.dart';
 
-sendMessageName(BuildContext context, String message) async {
+sendMessageName(
+    BuildContext context, String message, final Function(bool) callBack) async {
   Provider.of<MensagensRepository>(context, listen: false).addMessage(
       {"text": message, "received": false, "loading": false, "audio": false});
 
   await Future.delayed(
-    const Duration(microseconds: 500),
+    const Duration(microseconds: 50),
     () async {
       Provider.of<MensagensRepository>(context, listen: false).addMessage(
         {
@@ -30,7 +31,7 @@ sendMessageName(BuildContext context, String message) async {
       );
 
       await Future.delayed(
-        const Duration(seconds: 1),
+        const Duration(milliseconds: 500),
         () async {
           await removeLoadingAndAddMessage(
               context, "$message você já sabe como funciona o aplicativo?");
@@ -40,7 +41,7 @@ sendMessageName(BuildContext context, String message) async {
               builder: (context) {
                 return AlertDialog(
                   title:
-                      Text('$message Você já sabe como funciona o aplicativo?'),
+                      Text('$message você já sabe como funciona o aplicativo?'),
                   actions: <Widget>[
                     TextButton(
                       onPressed: () async {
@@ -70,6 +71,7 @@ sendMessageName(BuildContext context, String message) async {
                         await removeLoadingAndAddMessage(context,
                             "Para iniciarmos você poderia me informar quais comportamentos estranhos você notou?");
                         Navigator.of(context).pop();
+                        callBack(true);
                       },
                       child: const Text('SIM, JÁ SEI COMO FUNCIONA!'),
                     ),
@@ -84,6 +86,7 @@ sendMessageName(BuildContext context, String message) async {
                           "audio": false
                         });
                         Navigator.of(context).pop(); // Fecha o modal
+                        callBack(true);
                         Provider.of<MensagensRepository>(context, listen: false)
                             .addMessage(
                           {

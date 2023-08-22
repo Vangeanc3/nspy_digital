@@ -52,19 +52,22 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
             children: [
               Expanded(
                 child: Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 20, 8, 0),
+                  padding: const EdgeInsets.fromLTRB(0, 10, 8, 0),
                   child: Consumer<MensagensRepository>(
                     builder: (context, list, child) {
                       return CustomScrollView(
                         slivers: [
-                          SliverList(delegate:
-                              SliverChildBuilderDelegate((context, index) {
+                          SliverList(
+                              delegate:
+                                  SliverChildBuilderDelegate((context, index) {
                             return ChatWidget(
-                                received: list.messages[index]["received"],
-                                text: list.messages[index]["text"],
-                                loading: list.messages[index]["loading"],
-                                shouldAudio: list.messages[index]["received"]);
-                          }))
+                              received: list.getList[index]["received"],
+                              text: list.getList[index]["text"],
+                              loading: list.getList[index]["loading"],
+                              shouldAudio: list.getList[index]["audio"],
+                              shouldAnimate: list.getList.length - 1 == index,
+                            );
+                          }, childCount: list.getList.length))
                         ],
                       );
                     },
@@ -74,7 +77,9 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
               (showInput)
                   ? InputMessage(
                       callBack: (data) {
-                        showInput = data;
+                        setState(() {
+                          showInput = data;
+                        });
                       },
                     )
                       .animate()

@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       title: 'NSPY Digital',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.myTheme,
-      initialRoute: "/chat",
+      initialRoute: "/home",
       routes: {
         "/chat": (context) => const ChatBotScreen(),
         "/register": (context) => const RegisterScreen(),

@@ -47,7 +47,7 @@ class _AudioWidgetState extends State<AudioWidget> {
 
             if (!(playing ?? false)) {
               return IconButton(
-                  onPressed: () {}, icon: const Icon(Icons.play_arrow_rounded));
+                  onPressed: audioPlayer.play, icon: const Icon(Icons.play_arrow_rounded));
             } else if (processingState != ProcessingState.completed) {
               return IconButton(
                   onPressed: audioPlayer.pause,

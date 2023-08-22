@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nspy_digital/src/repositories/mensagens_repository.dart';
 import 'package:nspy_digital/src/shared/themes/theme_colors.dart';
+import 'package:nspy_digital/src/shared/utils/send_message.dart';
 import 'package:nspy_digital/src/shared/utils/send_message_name.dart';
 import 'package:nspy_digital/src/shared/utils/validate_value.dart';
 import 'package:provider/provider.dart';
@@ -78,10 +79,14 @@ class _InputMessageState extends State<InputMessage> {
                           .getList
                           .length;
                       if (listLength < 4) {
-                        await sendMessageName(context, msgController.text);
+                        await sendMessageName(context, msgController.text, widget.callBack);
                         msgController.clear();
                         widget.callBack(false);
-                      } else {}
+                      } else {
+                        await sendMessage(msgController.text, context);
+                        msgController.clear();
+                        widget.callBack(false);
+                      }
                     }
                   },
                 ),
