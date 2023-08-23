@@ -65,6 +65,7 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
                               text: list.getList[index]["text"],
                               loading: list.getList[index]["loading"],
                               shouldAudio: list.getList[index]["audio"],
+                              shouldButton: list.getList[index]["button"],
                               shouldAnimate: list.getList.length - 1 == index,
                             );
                           }, childCount: list.getList.length))

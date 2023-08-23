@@ -15,15 +15,13 @@ class _VideoPlayerViewState extends State<VideoPlayerView> {
 
   @override
   void initState() {
-    _videoController = VideoPlayerController.asset("assets/app/home_video.mp4")
+    _videoController = VideoPlayerController.asset("assets/app/home_play.mp4")
       ..initialize().then((_) {
         setState(() {});
       });
 
     _chewieController = ChewieController(
-      videoPlayerController: _videoController,
-      aspectRatio: 1
-    );
+        videoPlayerController: _videoController, aspectRatio: 1);
     super.initState();
   }
 

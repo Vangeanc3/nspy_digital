@@ -9,6 +9,7 @@ class ChatWidget extends StatelessWidget {
   final bool loading;
   final bool shouldAnimate;
   final bool shouldAudio;
+  final bool shouldButton;
 
   const ChatWidget(
       {super.key,
@@ -16,7 +17,8 @@ class ChatWidget extends StatelessWidget {
       required this.text,
       required this.loading,
       this.shouldAnimate = false,
-      required this.shouldAudio});
+      required this.shouldAudio,
+      this.shouldButton = false});
 
   @override
   Widget build(BuildContext context) {
