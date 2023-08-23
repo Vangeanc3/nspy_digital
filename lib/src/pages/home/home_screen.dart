@@ -31,26 +31,12 @@ class _HomeScreenState extends State<HomeScreen> {
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
           child: Column(
             children: [
-              // BoxCard(
-              //     radius: 100,
-              //     widget: Row(
-              //       mainAxisAlignment: MainAxisAlignment.center,
-              //       children: const [
-              //         Padding(
-              //           padding: EdgeInsets.only(right: 5),
-              //           child: Icon(Icons.circle, color: Colors.green),
-              //         ),
-              //         Text(
-              //           "100% invisivel e seguro",
-              //         )
-              //       ],
-              //     )),
               Container(
                 decoration:
                     BoxDecoration(borderRadius: BorderRadius.circular(10)),
                 margin: const EdgeInsets.only(top: 15, bottom: 30),
-                height: MediaQuery.of(context).size.height * 0.7,
-                width: double.infinity,
+                height: MediaQuery.of(context).size.height * 0.8,
+                // width: double.infinity,
                 child: const VideoPlayerView(),
               ),
               Container(
