@@ -21,7 +21,7 @@ class _VideoPlayerViewState extends State<VideoPlayerView> {
       });
 
     _chewieController = ChewieController(
-        videoPlayerController: _videoController, aspectRatio: 1);
+        videoPlayerController: _videoController, allowFullScreen: false);
     super.initState();
   }
 
@@ -34,6 +34,13 @@ class _VideoPlayerViewState extends State<VideoPlayerView> {
 
   @override
   Widget build(BuildContext context) {
-    return Chewie(controller: _chewieController);
+    return Center(
+      child: _videoController.value.isInitialized
+          ? AspectRatio(
+              aspectRatio: _videoController.value.aspectRatio,
+              child: Chewie(controller: _chewieController),
+            )
+          : const CircularProgressIndicator(), // Mostra um indicador de carregamento enquanto o vídeo está sendo inicializado.
+    );
   }
 }
