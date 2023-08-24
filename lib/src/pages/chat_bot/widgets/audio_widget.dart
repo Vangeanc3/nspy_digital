@@ -1,6 +1,7 @@
 import 'package:audio_video_progress_bar/audio_video_progress_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:nspy_digital/src/shared/widgets/box_card.dart';
 import 'package:rxdart/rxdart.dart';
 
 class AudioWidget extends StatefulWidget {
@@ -36,47 +37,50 @@ class _AudioWidgetState extends State<AudioWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        StreamBuilder<PlayerState>(
-          stream: audioPlayer.playerStateStream,
-          builder: (context, snapshot) {
-            final playerState = snapshot.data;
-            final processingState = playerState?.processingState;
-            final playing = playerState?.playing;
+    return BoxCard(
+      widget: Row(
+        children: [
+          StreamBuilder<PlayerState>(
+            stream: audioPlayer.playerStateStream,
+            builder: (context, snapshot) {
+              final playerState = snapshot.data;
+              final processingState = playerState?.processingState;
+              final playing = playerState?.playing;
 
-            if (!(playing ?? false)) {
-              return IconButton(
-                  onPressed: audioPlayer.play, icon: const Icon(Icons.play_arrow_rounded));
-            } else if (processingState != ProcessingState.completed) {
-              return IconButton(
-                  onPressed: audioPlayer.pause,
-                  icon: const Icon(Icons.pause_rounded));
-            }
-            return const Icon(Icons.play_arrow_rounded);
-          },
-        ),
-        StreamBuilder<PositionData>(
-          stream: positionDataStream,
-          builder: (context, snapshot) {
-            final positionData = snapshot.data;
-            return Expanded(
-              child: ProgressBar(
-                progress: positionData?.positon ?? Duration.zero,
-                buffered: positionData?.bufferedPosition ?? Duration.zero,
-                total: positionData?.duration ?? Duration.zero,
-                onSeek: audioPlayer.seek,
-                barHeight: 8,
-                baseBarColor: Colors.grey[600],
-                bufferedBarColor: Colors.grey,
-                progressBarColor: Colors.red,
-                thumbColor: Colors.red,
-                timeLabelTextStyle: const TextStyle(color: Colors.black),
-              ),
-            );
-          },
-        )
-      ],
+              if (!(playing ?? false)) {
+                return IconButton(
+                    onPressed: audioPlayer.play,
+                    icon: const Icon(Icons.play_arrow_rounded));
+              } else if (processingState != ProcessingState.completed) {
+                return IconButton(
+                    onPressed: audioPlayer.pause,
+                    icon: const Icon(Icons.pause_rounded));
+              }
+              return const Icon(Icons.play_arrow_rounded);
+            },
+          ),
+          StreamBuilder<PositionData>(
+            stream: positionDataStream,
+            builder: (context, snapshot) {
+              final positionData = snapshot.data;
+              return Expanded(
+                child: ProgressBar(
+                  progress: positionData?.positon ?? Duration.zero,
+                  buffered: positionData?.bufferedPosition ?? Duration.zero,
+                  total: positionData?.duration ?? Duration.zero,
+                  onSeek: audioPlayer.seek,
+                  barHeight: 8,
+                  baseBarColor: Colors.grey[600],
+                  bufferedBarColor: Colors.grey,
+                  progressBarColor: Colors.red,
+                  thumbColor: Colors.red,
+                  timeLabelTextStyle: const TextStyle(color: Colors.black),
+                ),
+              );
+            },
+          )
+        ],
+      ),
     );
   }
 }

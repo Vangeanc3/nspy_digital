@@ -6,6 +6,8 @@ import 'package:nspy_digital/src/shared/widgets/box_card.dart';
 import 'package:provider/provider.dart';
 
 Future<bool> automaticMessage(BuildContext context) async {
+  final repository = Provider.of<MensagensRepository>(context, listen: false);
+
   // Espera 3s para remover o loading
   await Future.delayed(
     const Duration(seconds: 1),
@@ -15,7 +17,7 @@ Future<bool> automaticMessage(BuildContext context) async {
 
       // DEPOIS ADD O LOADING
       await Future.delayed(const Duration(milliseconds: 1800), () async {
-        Provider.of<MensagensRepository>(context, listen: false).addMessage(
+        repository.addMessage(
           {
             "text": BoxCard(
                 widget: ConstrainedBox(
@@ -26,7 +28,8 @@ Future<bool> automaticMessage(BuildContext context) async {
                     ))),
             "received": true,
             "loading": true,
-            "audio": false
+            "audio": false,
+            "button": false
           },
         );
         await Future.delayed(
@@ -38,8 +41,7 @@ Future<bool> automaticMessage(BuildContext context) async {
             await Future.delayed(
               const Duration(milliseconds: 3500),
               () async {
-                Provider.of<MensagensRepository>(context, listen: false)
-                    .addMessage(
+                repository.addMessage(
                   {
                     "text": BoxCard(
                         widget: ConstrainedBox(
@@ -50,7 +52,8 @@ Future<bool> automaticMessage(BuildContext context) async {
                             ))),
                     "received": true,
                     "loading": true,
-                    "audio": false
+                    "audio": false,
+                    "button": false
                   },
                 );
                 await Future.delayed(

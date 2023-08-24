@@ -20,7 +20,8 @@ void main() {
                         ))),
                 "received": true,
                 "loading": true,
-                "audio": false
+                "audio": false,
+                "button": false
               },
             ])),
   ], child: const MyApp()));

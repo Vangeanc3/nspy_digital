@@ -8,14 +8,20 @@ import 'package:nspy_digital/src/shared/widgets/box_card.dart';
 import 'package:provider/provider.dart';
 
 sendMessageName(
-    BuildContext context, String message, final Function(bool) callBack) async {
-  Provider.of<MensagensRepository>(context, listen: false).addMessage(
-      {"text": message, "received": false, "loading": false, "audio": false});
+    BuildContext context, String message, Function(bool) callBack) async {
+  final repository = Provider.of<MensagensRepository>(context, listen: false);
+  repository.addMessage({
+    "text": message,
+    "received": false,
+    "loading": false,
+    "audio": false,
+    "button": false
+  });
 
   await Future.delayed(
     const Duration(microseconds: 50),
     () async {
-      Provider.of<MensagensRepository>(context, listen: false).addMessage(
+      repository.addMessage(
         {
           "text": BoxCard(
               widget: ConstrainedBox(
@@ -26,7 +32,8 @@ sendMessageName(
                   ))),
           "received": true,
           "loading": true,
-          "audio": false
+          "audio": false,
+          "button": false
         },
       );
 
@@ -45,15 +52,14 @@ sendMessageName(
                   actions: <Widget>[
                     TextButton(
                       onPressed: () async {
-                        Provider.of<MensagensRepository>(context, listen: false)
-                            .addMessage({
+                        repository.addMessage({
                           "text": "SIM, JÁ SEI COMO FUNCIONA!",
                           "received": false,
                           "loading": false,
-                          "audio": false
+                          "audio": false,
+                          "button": false
                         });
-                        Provider.of<MensagensRepository>(context, listen: false)
-                            .addMessage(
+                        repository.addMessage(
                           {
                             "text": BoxCard(
                                 widget: ConstrainedBox(
@@ -65,7 +71,8 @@ sendMessageName(
                                     ))),
                             "received": true,
                             "loading": true,
-                            "audio": false
+                            "audio": false,
+                            "button": false
                           },
                         );
                         await removeLoadingAndAddMessage(context,
@@ -76,33 +83,45 @@ sendMessageName(
                       child: const Text('SIM, JÁ SEI COMO FUNCIONA!'),
                     ),
                     TextButton(
-                      onPressed: () {
+                      onPressed: () async {
                         // Ação a ser executada quando o usuário pressionar "Confirmar"
-                        Provider.of<MensagensRepository>(context, listen: false)
-                            .addMessage({
+                        repository.addMessage({
                           "text": "NÃO, ME EXPLICA POR FAVOR!",
                           "received": false,
                           "loading": false,
-                          "audio": false
+                          "audio": false,
+                          "button": false
                         });
                         Navigator.of(context).pop(); // Fecha o modal
-                        callBack(true);
-                        Provider.of<MensagensRepository>(context, listen: false)
-                            .addMessage(
+                        repository.addMessage(
+                          {
+                            "text": "audio",
+                            "received": true,
+                            "loading": false,
+                            "audio": true,
+                            "button": false
+                          },
+                        );
+
+                        repository.addMessage(
                           {
                             "text": BoxCard(
                                 widget: ConstrainedBox(
                                     constraints:
                                         const BoxConstraints(maxWidth: 70),
                                     child: const SpinKitThreeBounce(
-                                      color: Color.fromARGB(255, 22, 14, 14),
+                                      color: Colors.black,
                                       size: 10,
                                     ))),
                             "received": true,
-                            "loading": false,
-                            "audio": true
+                            "loading": true,
+                            "audio": false,
+                            "button": false
                           },
                         );
+                        await removeLoadingAndAddMessage(context,
+                            "Para iniciarmos você poderia me informar quais comportamentos estranhos você notou?");
+                        callBack(true);
                         // Coloque aqui a lógica para a ação de confirmação
                       },
                       child: const Text('NÃO, ME EXPLICA POR FAVOR!'),

@@ -13,7 +13,7 @@ class ChatButtonWidget extends StatelessWidget {
       child: Ink(
         padding: const EdgeInsets.symmetric(vertical: 13),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(10),
           color: Colors.blue,
         ),
         child: const Row(
