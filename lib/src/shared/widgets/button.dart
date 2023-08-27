@@ -30,10 +30,12 @@ class Button extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Padding(
-            padding: const EdgeInsets.only(right: 20),
-            child: icon,
-          ),
+          (icon == null)
+              ? Container()
+              : Padding(
+                  padding: const EdgeInsets.only(right: 20),
+                  child: icon,
+                ),
           Text(texto, style: TextStyle(color: corTexto)),
         ],
       ),
