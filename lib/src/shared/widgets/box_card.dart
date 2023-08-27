@@ -6,6 +6,7 @@ class BoxCard extends StatelessWidget {
   final bool borda;
   final Color? borderColor;
   final double radius;
+  final double preenchimento;
   const BoxCard({
     super.key,
     required this.widget,
@@ -13,6 +14,7 @@ class BoxCard extends StatelessWidget {
     this.borda = false,
     this.borderColor = Colors.black,
     this.radius = 10,
+    this.preenchimento = 16,
   });
 
   Color? escolheCor(BuildContext context) {
@@ -25,7 +27,7 @@ class BoxCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(16),
+      padding: EdgeInsets.all(preenchimento),
       decoration: BoxDecoration(
           boxShadow: kElevationToShadow[3],
           border: (borda) ? Border.all(width: 1, color: borderColor!) : null,

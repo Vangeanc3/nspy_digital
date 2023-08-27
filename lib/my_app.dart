@@ -8,7 +8,8 @@ import 'package:nspy_digital/src/pages/web_sales/web_sales_page.dart';
 import 'package:nspy_digital/src/shared/themes/app_theme.dart';
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final int isLogged;
+  const MyApp({super.key, required this.isLogged});
 
   // This widget is the root of your application.
   @override
@@ -17,8 +18,10 @@ class MyApp extends StatelessWidget {
       title: 'NSPY Digital',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.myTheme,
-      initialRoute: "/chat",
+      initialRoute: "/",
       routes: {
+        "/": (context) =>
+            (isLogged == 1) ? const HomeScreen() : const ChatBotScreen(),
         "/chat": (context) => const ChatBotScreen(),
         "/register": (context) => const RegisterScreen(),
         "/home": (context) => const HomeScreen(),

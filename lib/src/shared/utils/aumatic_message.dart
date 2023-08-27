@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:nspy_digital/src/repositories/mensagens_repository.dart';
 import 'package:nspy_digital/src/shared/utils/remove_loading_and_add_message.dart';
-import 'package:nspy_digital/src/shared/widgets/box_card.dart';
 import 'package:provider/provider.dart';
 
 Future<bool> automaticMessage(BuildContext context) async {
@@ -19,13 +17,7 @@ Future<bool> automaticMessage(BuildContext context) async {
       await Future.delayed(const Duration(milliseconds: 1800), () async {
         repository.addMessage(
           {
-            "text": BoxCard(
-                widget: ConstrainedBox(
-                    constraints: const BoxConstraints(maxWidth: 70),
-                    child: const SpinKitThreeBounce(
-                      color: Colors.black,
-                      size: 10,
-                    ))),
+            "text": "",
             "received": true,
             "loading": true,
             "audio": false,
@@ -43,13 +35,7 @@ Future<bool> automaticMessage(BuildContext context) async {
               () async {
                 repository.addMessage(
                   {
-                    "text": BoxCard(
-                        widget: ConstrainedBox(
-                            constraints: const BoxConstraints(maxWidth: 70),
-                            child: const SpinKitThreeBounce(
-                              color: Colors.black,
-                              size: 10,
-                            ))),
+                    "text": "",
                     "received": true,
                     "loading": true,
                     "audio": false,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nspy_digital/src/database/nspy_dao.dart';
 
 class ChatButtonWidget extends StatelessWidget {
   const ChatButtonWidget({super.key});
@@ -8,7 +9,8 @@ class ChatButtonWidget extends StatelessWidget {
     return InkWell(
       borderRadius: BorderRadius.circular(20),
       onTap: () {
-        Navigator.pushNamed(context, "/home");
+        NSPYDao().setarLogado();
+        Navigator.pushReplacementNamed(context, "/home");
       },
       child: Ink(
         padding: const EdgeInsets.symmetric(vertical: 13),

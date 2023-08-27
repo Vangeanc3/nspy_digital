@@ -9,10 +9,10 @@ class ChatLoadingWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return BoxCard(
         widget: ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 70),
+            constraints: const BoxConstraints(maxWidth: 40),
             child: const SpinKitThreeBounce(
               color: Colors.black,
-              size: 10,
+              size: 15,
             )));
   }
 }

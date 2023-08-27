@@ -1,28 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:nspy_digital/my_app.dart';
+import 'package:nspy_digital/src/database/nspy_dao.dart';
 import 'package:provider/provider.dart';
 import 'package:nspy_digital/src/repositories/mensagens_repository.dart';
 
-import 'src/shared/widgets/box_card.dart';
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
 
-void main() {
-  runApp(MultiProvider(providers: [
-    ChangeNotifierProvider(
-        create: (context) => MensagensRepository(messages: [
-              {
-                "text": BoxCard(
-                    widget: ConstrainedBox(
-                        constraints: const BoxConstraints(maxWidth: 70),
-                        child: const SpinKitThreeBounce(
-                          color: Colors.black,
-                          size: 10,
-                        ))),
-                "received": true,
-                "loading": true,
-                "audio": false,
-                "button": false
-              },
-            ])),
-  ], child: const MyApp()));
+  var logged = await NSPYDao().retornaLogado();
+  print("Token: ${logged["logado"]}");
+
+  runApp(MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+            create: (context) => MensagensRepository(messages: [
+                  {
+                    "text": "",
+                    "received": true,
+                    "loading": true,
+                    "audio": false,
+                    "button": false
+                  },
+                ])),
+      ],
+      child: MyApp(
+        isLogged: logged["logado"],
+      )));
 }

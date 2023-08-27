@@ -38,6 +38,7 @@ class _AudioWidgetState extends State<AudioWidget> {
   @override
   Widget build(BuildContext context) {
     return BoxCard(
+      preenchimento: 8,
       widget: Row(
         children: [
           StreamBuilder<PlayerState>(
@@ -56,7 +57,9 @@ class _AudioWidgetState extends State<AudioWidget> {
                     onPressed: audioPlayer.pause,
                     icon: const Icon(Icons.pause_rounded));
               }
-              return const Icon(Icons.play_arrow_rounded);
+              return IconButton(
+                  onPressed: audioPlayer.play,
+                  icon: const Icon(Icons.play_arrow_rounded));
             },
           ),
           StreamBuilder<PositionData>(
@@ -65,7 +68,7 @@ class _AudioWidgetState extends State<AudioWidget> {
               final positionData = snapshot.data;
               return Expanded(
                 child: ProgressBar(
-                  progress: positionData?.positon ?? Duration.zero,
+                  progress: positionData?.position ?? Duration.zero,
                   buffered: positionData?.bufferedPosition ?? Duration.zero,
                   total: positionData?.duration ?? Duration.zero,
                   onSeek: audioPlayer.seek,
@@ -86,9 +89,9 @@ class _AudioWidgetState extends State<AudioWidget> {
 }
 
 class PositionData {
-  const PositionData(this.bufferedPosition, this.positon, this.duration);
+  const PositionData(this.position, this.bufferedPosition, this.duration);
 
-  final Duration positon;
+  final Duration position;
   final Duration bufferedPosition;
   final Duration duration;
 }

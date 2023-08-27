@@ -35,10 +35,10 @@ class _InputMessageState extends State<InputMessage> {
             Flexible(
               child: Container(
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(100),
                     color: const Color.fromRGBO(156, 39, 176, 1)),
                 child: TextFormField(
-                  style: const TextStyle(color: Colors.white),
+                  style: const TextStyle(color: Colors.white, fontSize: 18),
                   controller: msgController,
                   validator: (value) {
                     if (validateValue(value)) {
@@ -47,7 +47,7 @@ class _InputMessageState extends State<InputMessage> {
                       return null;
                     }
                   },
-                  keyboardType: TextInputType.multiline,
+                  keyboardType: TextInputType.text,
                   minLines: 1,
                   maxLines: 4,
                   decoration: const InputDecoration(
@@ -55,7 +55,7 @@ class _InputMessageState extends State<InputMessage> {
                       hintText: "Seu nome",
                       hintStyle: TextStyle(color: Colors.white),
                       contentPadding:
-                          EdgeInsets.symmetric(horizontal: 16, vertical: 12)),
+                          EdgeInsets.symmetric(horizontal: 20, vertical: 8)),
                 ),
               ),
             ),
@@ -79,9 +79,9 @@ class _InputMessageState extends State<InputMessage> {
                           .getList
                           .length;
                       if (listLength < 4) {
-                        await sendMessageName(context, msgController.text, widget.callBack);
+                        await sendMessageName(
+                            context, msgController.text, widget.callBack);
                         msgController.clear();
-                        widget.callBack(false);
                       } else {
                         await sendMessage(msgController.text, context);
                         msgController.clear();
