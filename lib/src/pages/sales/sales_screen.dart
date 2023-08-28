@@ -18,8 +18,8 @@ class SalesScreen extends StatelessWidget {
         body: SingleChildScrollView(
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 25),
-            child: const Column(
-              children: [
+            child:  Column(
+              children: const [
                 Text("ESCOLHA SEU PLANO",
                     style:
                         TextStyle(fontSize: 26, fontWeight: FontWeight.w900)),

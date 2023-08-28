@@ -1,5 +1,3 @@
-import 'package:audio_video_progress_bar/audio_video_progress_bar.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:nspy_digital/src/pages/pre_sales/widgets/after_loading_widget.dart';
 
@@ -37,41 +35,40 @@ class _PreSalesScreenState extends State<PreSalesScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("ESPIÃO PARA CELULAR",
+        title: const Text("NSPY Digital",
             style: TextStyle(color: Colors.white, fontWeight: FontWeight.w900)),
         centerTitle: true,
         backgroundColor: Colors.purple,
       ),
-      body: SingleChildScrollView(
-        child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 25),
-          child: Column(
-            children: [
-              Text(
-                titleLoading,
-                style: const TextStyle(fontSize: 20),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10),
-                child: LinearProgressIndicator(
-                    value: progress / 100,
-                    minHeight: 50,
-                    borderRadius: BorderRadius.circular(10),
-                    color: Colors.purple,
-                    backgroundColor: Colors.purple[200]),
-              ),
-              Text(
-                "%${progress.toInt()}",
-                style: const TextStyle(fontSize: 20),
-              ),
-              (progress.toInt() == 100)
-                  ? const Padding(
-                      padding: EdgeInsets.only(top: 20),
-                      child: AfterLoadingWidget(),
-                    )
-                  : Container()
-            ],
-          ),
+      body: Container(
+        height: MediaQuery.of(context).size.height,
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+        child: Column(
+          children: [
+            Image.asset("assets/app/logo.png", height: 100, ),
+            Text(
+              titleLoading,
+              style: const TextStyle(fontSize: 20),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 10),
+              child: LinearProgressIndicator(
+                  value: progress / 100,
+                  minHeight: 50,
+                  color: Colors.purple,
+                  backgroundColor: Colors.purple[200]),
+            ),
+            Text(
+              "%${progress.toInt()}",
+              style: const TextStyle(fontSize: 20),
+            ),
+            (progress.toInt() == 100)
+                ? const Padding(
+                    padding: EdgeInsets.only(top: 20),
+                    child: AfterLoadingWidget(),
+                  )
+                : Container()
+          ],
         ),
       ),
     );

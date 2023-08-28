@@ -18,9 +18,9 @@ class ChatButtonWidget extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
           color: Colors.blue,
         ),
-        child: const Row(
+        child:  Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [
+          children: const [
             Text("Proseguir", style: TextStyle(color: Colors.white)),
           ],
         ),
