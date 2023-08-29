@@ -34,6 +34,7 @@ class _PreSalesScreenState extends State<PreSalesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[300],
       appBar: AppBar(
         title: const Text("NSPY Digital",
             style: TextStyle(color: Colors.white, fontWeight: FontWeight.w900)),
@@ -45,13 +46,15 @@ class _PreSalesScreenState extends State<PreSalesScreen> {
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         child: Column(
           children: [
-            Image.asset("assets/app/logo.png", height: 100, ),
-            Text(
-              titleLoading,
-              style: const TextStyle(fontSize: 20),
-            ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 10),
+              child: Text(
+                titleLoading,
+                style: const TextStyle(fontSize: 20),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 15),
               child: LinearProgressIndicator(
                   value: progress / 100,
                   minHeight: 50,

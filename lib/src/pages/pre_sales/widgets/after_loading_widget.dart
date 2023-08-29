@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nspy_digital/src/shared/widgets/button.dart';
+import 'package:nspy_digital/src/shared/widgets/my_button.dart';
 
 class AfterLoadingWidget extends StatelessWidget {
   const AfterLoadingWidget({super.key});
@@ -28,38 +28,38 @@ class AfterLoadingWidget extends StatelessWidget {
             ],
           ),
         ),
-          const Padding(
-            padding:  EdgeInsets.only(bottom: 20),
-            child:  Text(
+        const Padding(
+          padding: EdgeInsets.only(bottom: 20),
+          child: Text(
             "Clique no botão abaixo para ver tudo!",
             textAlign: TextAlign.center,
             style: TextStyle(fontSize: 20),
-                  ),
           ),
-
+        ),
         InkWell(
           borderRadius: BorderRadius.circular(100),
           onTap: () {},
-          child: const Button(
-            texto: "Iniciar",
-            corTexto: Colors.white,
-            cor: Colors.purple,
+          child: const MyButton(
+            text: "Iniciar",
+            onTap: null,
           ),
         )
       ],
     );
   }
 
-  Widget _buildInfoContainer(String count, String label, bool borderRight ) {
+  Widget _buildInfoContainer(String count, String label, bool borderRight) {
     return Container(
       width: 110,
       padding: const EdgeInsets.symmetric(vertical: 15),
-      decoration:  BoxDecoration(
-          border: (borderRight) ? const Border(
-              right: BorderSide(
-                color: Colors.purple,
-        width: 1,
-      )): null),
+      decoration: BoxDecoration(
+          border: (borderRight)
+              ? const Border(
+                  right: BorderSide(
+                  color: Colors.purple,
+                  width: 1,
+                ))
+              : null),
       child: Column(
         children: [
           Padding(
@@ -67,7 +67,9 @@ class AfterLoadingWidget extends StatelessWidget {
             child: Text(
               count,
               textAlign: TextAlign.center,
-              style: const TextStyle(fontWeight: FontWeight.bold,),
+              style: const TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
           Text(

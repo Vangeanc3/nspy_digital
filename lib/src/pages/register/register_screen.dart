@@ -68,7 +68,7 @@ class RegisterScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(100),
                     onTap: () {
                       if (formKey.currentState!.validate()) {
-                        Navigator.pushNamed(context, "/sales");
+                        Navigator.pushNamed(context, "/pre_sales");
                       }
                     },
                     child: const MyButton(
