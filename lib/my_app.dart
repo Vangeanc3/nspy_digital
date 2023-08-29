@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nspy_digital/src/pages/chat_bot/chat_bot_screen.dart';
 import 'package:nspy_digital/src/pages/home/home_screen.dart';
 import 'package:nspy_digital/src/pages/pre_sales/pre_sales_screen.dart';
+import 'package:nspy_digital/src/pages/privacy_policy/privacy_policy_screen.dart';
 import 'package:nspy_digital/src/pages/register/register_screen.dart';
 import 'package:nspy_digital/src/pages/sales/sales_screen.dart';
 import 'package:nspy_digital/src/pages/web_sales/web_sales_page.dart';
@@ -19,9 +20,10 @@ class MyApp extends StatelessWidget {
       title: 'NSPY Digital',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.myTheme,
-      initialRoute: "/sales",
+      initialRoute: "/pre_sales",
       routes: {
         "/welcome": (context) => const WelcomeScreen(),
+        "/privacy_policy":(context) => const PrivacyPolicyScreen(),
         "/decision": (context) =>
             (isLogged == 1) ? const HomeScreen() : const ChatBotScreen(),
         "/register": (context) => const RegisterScreen(),

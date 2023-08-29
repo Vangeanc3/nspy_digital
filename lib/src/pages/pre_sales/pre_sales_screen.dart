@@ -55,7 +55,7 @@ class _PreSalesScreenState extends State<PreSalesScreen> {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 15),
-              child: LinearProgressIndicator(
+              child: LinearProgressIndicator(                
                   value: progress / 100,
                   minHeight: 50,
                   color: Colors.purple,

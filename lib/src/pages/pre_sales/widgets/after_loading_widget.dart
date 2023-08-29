@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nspy_digital/src/shared/widgets/button.dart';
 import 'package:nspy_digital/src/shared/widgets/my_button.dart';
 
 class AfterLoadingWidget extends StatelessWidget {
@@ -36,14 +37,11 @@ class AfterLoadingWidget extends StatelessWidget {
             style: TextStyle(fontSize: 20),
           ),
         ),
-        InkWell(
-          borderRadius: BorderRadius.circular(100),
-          onTap: () {},
-          child: const MyButton(
-            text: "Iniciar",
-            onTap: null,
-          ),
-        )
+       InkWell(
+        onTap: () {
+          Navigator.pushNamed(context, "/sales");
+        },
+        child: const Button(texto: "Iniciar", corTexto: Colors.white, cor: Colors.purple, ))
       ],
     );
   }
@@ -51,7 +49,7 @@ class AfterLoadingWidget extends StatelessWidget {
   Widget _buildInfoContainer(String count, String label, bool borderRight) {
     return Container(
       width: 110,
-      padding: const EdgeInsets.symmetric(vertical: 15),
+      padding: const EdgeInsets.symmetric(vertical: 20),
       decoration: BoxDecoration(
           border: (borderRight)
               ? const Border(
@@ -75,6 +73,7 @@ class AfterLoadingWidget extends StatelessWidget {
           Text(
             label,
             textAlign: TextAlign.center,
+            overflow: TextOverflow.ellipsis,
             style: const TextStyle(fontSize: 16),
           ),
         ],

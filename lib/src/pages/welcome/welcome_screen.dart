@@ -75,14 +75,18 @@ class WelcomeScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-                      const Text(
-                        'Políticas de privacidade',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 14,
-                          decoration: TextDecoration.underline,
-                        ),
-                      )
+                      TextButton(
+                          onPressed: () {
+                            Navigator.pushNamed(context, "/privacy_policy");
+                          },
+                          child: const Text(
+                            'Políticas de privacidade',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 14,
+                              decoration: TextDecoration.underline,
+                            ),
+                          ))
                     ],
                   )),
             ],
