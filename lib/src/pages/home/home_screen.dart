@@ -17,7 +17,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("ESPIÃO PARA CELULAR",
+        title: const Text("NSPY Digital",
             style: TextStyle(color: Colors.white, fontWeight: FontWeight.w900)),
         centerTitle: true,
         backgroundColor: Colors.purple,

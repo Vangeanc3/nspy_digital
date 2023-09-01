@@ -37,13 +37,13 @@ class _PreSalesScreenState extends State<PreSalesScreen> {
       backgroundColor: Colors.grey[300],
       appBar: AppBar(
         title: const Text("NSPY Digital",
-            style: TextStyle(color: Colors.white, fontWeight: FontWeight.w900)),
+            style: TextStyle(color: Color.fromRGBO(255, 255, 255, 1), fontWeight: FontWeight.w900)),
         centerTitle: true,
         backgroundColor: Colors.purple,
       ),
       body: Container(
         height: MediaQuery.of(context).size.height,
-        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 50),
         child: Column(
           children: [
             Padding(
@@ -65,6 +65,7 @@ class _PreSalesScreenState extends State<PreSalesScreen> {
               "%${progress.toInt()}",
               style: const TextStyle(fontSize: 20),
             ),
+            Expanded(child: Container()),
             (progress.toInt() == 100)
                 ? const Padding(
                     padding: EdgeInsets.only(top: 20),

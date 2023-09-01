@@ -20,9 +20,10 @@ class MyApp extends StatelessWidget {
       title: 'NSPY Digital',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.myTheme,
-      initialRoute: "/pre_sales",
+      initialRoute: "/welcome",
       routes: {
         "/welcome": (context) => const WelcomeScreen(),
+        "/home": (context) =>  const HomeScreen(),
         "/privacy_policy":(context) => const PrivacyPolicyScreen(),
         "/decision": (context) =>
             (isLogged == 1) ? const HomeScreen() : const ChatBotScreen(),

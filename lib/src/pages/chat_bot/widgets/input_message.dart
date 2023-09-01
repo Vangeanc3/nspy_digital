@@ -16,6 +16,8 @@ class InputMessage extends StatefulWidget {
 }
 
 class _InputMessageState extends State<InputMessage> {
+  bool isButtonDisabled = false;
+
   @override
   void dispose() {
     super.dispose();
@@ -79,13 +81,21 @@ class _InputMessageState extends State<InputMessage> {
                           .getList
                           .length;
                       if (listLength < 4) {
-                        await sendMessageName(
-                            context, msgController.text, widget.callBack);
-                        msgController.clear();
+                        if (!isButtonDisabled) {
+                          isButtonDisabled = true;
+                          await sendMessageName(
+                              context, msgController.text, widget.callBack);
+                          msgController.clear();
+                          isButtonDisabled = false;
+                        }
                       } else {
-                        await sendMessage(msgController.text, context);
-                        msgController.clear();
-                        widget.callBack(false);
+                        if (!isButtonDisabled) {
+                          isButtonDisabled = true;
+                          await sendMessage(msgController.text, context);
+                          msgController.clear();
+                          widget.callBack(false);
+                          isButtonDisabled = false;
+                        }
                       }
                     }
                   },

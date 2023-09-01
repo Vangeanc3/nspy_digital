@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nspy_digital/src/shared/widgets/button.dart';
 import 'package:nspy_digital/src/shared/widgets/my_button.dart';
 import 'package:nspy_digital/src/pages/register/widgets/my_text_field.dart';
 
@@ -14,7 +15,7 @@ class RegisterScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.grey[300],
       appBar: AppBar(
-        title: const Text("ESPIÃO PARA CELULAR",
+        title: const Text("NSPY Digital",
             style: TextStyle(color: Colors.white, fontWeight: FontWeight.w900)),
         centerTitle: true,
         backgroundColor: Colors.purple,
@@ -64,17 +65,21 @@ class RegisterScreen extends StatelessWidget {
                       obscureText: false,
                       typeNumber: true),
                 ),
-                InkWell(
-                    borderRadius: BorderRadius.circular(100),
-                    onTap: () {
-                      if (formKey.currentState!.validate()) {
-                        Navigator.pushNamed(context, "/pre_sales");
-                      }
-                    },
-                    child: const MyButton(
-                      onTap: null,
-                      text: "Cadastrar",
-                    ))
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 40),
+                  child: InkWell(
+                      borderRadius: BorderRadius.circular(100),
+                      onTap: () {
+                        if (formKey.currentState!.validate()) {
+                          Navigator.pushNamed(context, "/pre_sales");
+                        }
+                      },
+                      child: const Button(
+                        corTexto: Colors.white,
+                        texto: "Cadastrar",
+                        cor: Colors.purple,
+                      )),
+                )
               ],
             ),
           ),
